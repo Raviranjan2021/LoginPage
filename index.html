@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>SignUp Form - MongoDB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login1-box">
+        <h2>Login Form</h2>
+        <form id="loginForm" action="/login" method="POST">
+
+            <div class="user-box">
+                <!-- <label for="email">email:</label> -->
+                <input type="text" id="email" name="email" placeholder="Email" required><br><br>
+            </div>
+
+            <div class="user-box">
+                <!-- <label for="password">Password:</label> -->
+                <input type="password" id="password" name="password" placeholder="Password" required><br><br>
+            </div>
+            
+                <input type="button" value="Login" onclick="login()">
+
+
+            <a href="login.html">
+                create new account
+                </a>
+        
+    </form>
+    </div>
+
+    
+    <script>
+        function login() {
+            var email = $('#email').val();
+            var password = $('#password').val();
+            
+            $.ajax({
+                type: 'POST',
+                url: '/login',
+                data: {
+                    email: email,
+                    password: password
+                },
+                success: function(response) {
+                    alert(response);
+                    // Redirect to a different page or perform other actions upon successful login
+                },
+                error: function(error) {
+                    console.log(error);
+                    alert('An error occurred during login');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
